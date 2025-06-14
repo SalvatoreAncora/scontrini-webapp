@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Web App Scontrini</title>
+  <script>
+    function confermaCaricamentoExcel(input) {
+      const file = input.files[0];
+      if (file) {
+        document.getElementById("conferma_excel").innerText = "✅ File caricato: " + file.name;
+      } else {
+        document.getElementById("conferma_excel").innerText = "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>📁 Carica file Excel mensile</h1>
+  <form method="POST" action="/upload_excel" enctype="multipart/form-data">
+    <input type="file" name="excel" accept=".xlsx" onchange="confermaCaricamentoExcel(this)" required>
+    <button type="submit">Carica Excel</button>
+    <p id="conferma_excel" style="color: green;"></p>
+  </form>
+
+  <h2>📷 Scatta o carica uno scontrino</h2>
+  <form method="POST" action="/upload" enctype="multipart/form-data">
+    <!-- Fotocamera -->
+    <label><b>📸 Scatta scontrino</b></label><br>
+    <input type="file" name="scontrino_scatto" accept="image/*" capture="environment"><br><br>
+
+    <!-- File o galleria -->
+    <label><b>📁 Carica da file/galleria</b></label><br>
+    <input type="file" name="scontrino_file" accept="image/*"><br><br>
+
+    <button type="submit">Invia scontrino</button>
+  </form>
+
+  <br>
+  <form method="GET" action="/chiudi">
+    <button type="submit">Chiudi nota spese e scarica PDF</button>
+  </form>
+</body>
+</html>

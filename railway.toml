@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS"
+[build.nixpacksPlan]
+phases.setup.cmds = ["apt-get update && apt-get install -y tesseract-ocr"]
+[deploy]
+startCommand = "gunicorn app:app"

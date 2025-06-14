@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: scontrini-webapp
-    env: python
-    buildCommand: |
-      ./build.sh
-      pip install -r requirements.txt
-    startCommand: gunicorn app:app

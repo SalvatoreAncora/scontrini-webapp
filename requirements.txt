@@ -1,5 +1,8 @@
 flask
+pytesseract
 pillow
 openpyxl
 reportlab
+requests
 werkzeug
+gunicorn

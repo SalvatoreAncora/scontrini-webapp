@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Web App Scontrini</title>
+</head>
+<body>
+  <h1>📁 Carica file Excel mensile</h1>
+  <form method="POST" action="/upload_excel" enctype="multipart/form-data">
+    <input type="file" name="excel" accept=".xlsx" required>
+    <button type="submit">Carica Excel</button>
+  </form>
+
+  <h2>📷 Carica o scatta scontrino</h2>
+  <form method="POST" action="/upload" enctype="multipart/form-data">
+    <label>Importo in euro:</label>
+    <input type="text" name="importo" required><br><br>
+    <input type="file" name="scontrino" accept="image/*" capture="environment" required><br><br>
+    <button type="submit">Carica scontrino</button>
+  </form>
+
+  <br>
+  <form method="GET" action="/chiudi">
+    <button type="submit">Chiudi nota spese e scarica PDF</button>
+  </form>
+</body>
+</html>

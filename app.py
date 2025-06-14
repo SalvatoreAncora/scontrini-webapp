@@ -59,7 +59,7 @@ def upload_excel():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    file = request.files['scontrino']
+    file = request.files.get('scontrino_scatto') or request.files.get('scontrino_file')
     if file.filename == '':
         return 'Nessun file selezionato', 400
 

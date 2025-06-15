@@ -1,0 +1,10 @@
+flask
+flask_sqlalchemy
+flask_login
+flask_dance
+openpyxl
+reportlab
+python-dotenv
+openai
+requests
+gunicorn

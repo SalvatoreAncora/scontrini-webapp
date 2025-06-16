@@ -23,6 +23,8 @@ load_dotenv()
 UPLOAD_FOLDER = 'uploads'
 EXCEL_FOLDER = 'excels'
 PDF_FOLDER = 'pdfs'
+DB_FOLDER = 'db'
+os.makedirs(DB_FOLDER, exist_ok=True)
 ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
 GPT_MODEL = "gpt-4-vision-preview"
 

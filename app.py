@@ -19,18 +19,21 @@ import datetime
 # Load environment variables
 load_dotenv()
 
+# Detect if running on Render
+is_render = os.environ.get('RENDER') == 'true'
+
 # Configuration
 UPLOAD_FOLDER = 'uploads'
 EXCEL_FOLDER = 'excels'
 PDF_FOLDER = 'pdfs'
-DB_FOLDER = 'db'
+DB_FOLDER = '/tmp' if is_render else 'db'
 os.makedirs(DB_FOLDER, exist_ok=True)
 ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
 GPT_MODEL = "gpt-4-vision-preview"
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev")
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(DB_FOLDER, "users.db")}'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['EXCEL_FOLDER'] = EXCEL_FOLDER
 app.config['PDF_FOLDER'] = PDF_FOLDER
@@ -48,7 +51,7 @@ login_manager.login_view = 'login'
 # Google OAuth Setup
 google_bp = make_google_blueprint(client_id=os.getenv("GOOGLE_OAUTH_CLIENT_ID"),
                                    client_secret=os.getenv("GOOGLE_OAUTH_CLIENT_SECRET"),
-                                   redirect_to="google_login")
+                                   redirect_url="/login/google/authorized")
 app.register_blueprint(google_bp, url_prefix="/login")
 
 # OpenAI Setup

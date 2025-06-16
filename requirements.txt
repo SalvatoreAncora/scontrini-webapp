@@ -8,3 +8,5 @@ python-dotenv
 openai
 requests
 gunicorn
+pytesseract
+pillow

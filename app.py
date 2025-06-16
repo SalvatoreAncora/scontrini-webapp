@@ -198,12 +198,6 @@ def logout():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# CLI DB init
-@app.cli.command("init-db")
-def init_db():
-    db.create_all()
-    print("Database initialized")
-
 if __name__ == '__main__':
   if os.environ.get("RENDER") == "true":
     with app.app_context():

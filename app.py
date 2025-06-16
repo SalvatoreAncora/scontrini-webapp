@@ -205,4 +205,8 @@ def init_db():
     print("Database initialized")
 
 if __name__ == '__main__':
+  if os.environ.get("RENDER") == "true":
+    with app.app_context():
+        db.create_all()
+        print("✔ Database creato automaticamente su Render")
     app.run(debug=True)
